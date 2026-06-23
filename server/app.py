@@ -7,6 +7,7 @@ load_dotenv()
 
 from routes.menu import menu_bp
 from routes.orders import orders_bp
+from routes.admin import admin_bp
 
 app = Flask(__name__)
 
@@ -15,6 +16,7 @@ CORS(app, resources={r"/api/*": {"origins": origins}})
 
 app.register_blueprint(menu_bp, url_prefix="/api")
 app.register_blueprint(orders_bp, url_prefix="/api")
+app.register_blueprint(admin_bp, url_prefix="/api")
 
 
 @app.get("/api/health")
@@ -23,7 +25,9 @@ def health():
 
 
 @app.errorhandler(400)
+@app.errorhandler(401)
 @app.errorhandler(404)
+@app.errorhandler(500)
 def handle_error(error):
     return jsonify({"error": error.description}), error.code
 
