@@ -86,3 +86,44 @@ export function updateOrderStatus(orderId, status) {
 export function fetchTodayStats() {
   return request("/admin/stats", { headers: adminHeaders() });
 }
+
+// ─── Admin Menu API ───────────────────────────────────────────────────────────
+
+export function fetchAdminMenu() {
+  return request("/admin/menu", { headers: adminHeaders() });
+}
+
+export function createMenuItem(data) {
+  return request("/admin/menu", {
+    method: "POST",
+    headers: adminHeaders(),
+    body: JSON.stringify(data),
+  });
+}
+
+export function updateMenuItem(id, data) {
+  return request(`/admin/menu/${id}`, {
+    method: "PATCH",
+    headers: adminHeaders(),
+    body: JSON.stringify(data),
+  });
+}
+
+export function toggleMenuItemAvailability(id, isAvailable) {
+  return request(`/admin/menu/${id}/availability`, {
+    method: "PATCH",
+    headers: adminHeaders(),
+    body: JSON.stringify({ is_available: isAvailable }),
+  });
+}
+
+export function deleteMenuItem(id) {
+  return request(`/admin/menu/${id}`, {
+    method: "DELETE",
+    headers: adminHeaders(),
+  });
+}
+
+export function fetchRevenue(days = 10) {
+  return request(`/admin/revenue?days=${days}`, { headers: adminHeaders() });
+}

@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "../supabaseClient.js";
-import { fetchAdminOrders, fetchAdminOrderById, fetchTodayStats } from "../api.js";
+
 import KanbanColumn from "../components/KanbanColumn.jsx";
+import { fetchAdminOrders, fetchAdminOrderById, fetchTodayStats, fetchRevenue } from "../api.js";
+import RevenueChart from "../components/RevenueChart.jsx";
 
 const STATUSES = ["received", "preparing", "served"];
 
@@ -35,6 +37,8 @@ export default function AdminDashboard() {
   const [orders, setOrders] = useState([]);
   const [stats, setStats] = useState(null);
   const [realtimeStatus, setRealtimeStatus] = useState("connecting"); // connecting | live | error
+  const [revenue, setRevenue] = useState([]);
+const [chartOpen, setChartOpen] = useState(false);
   const [loadError, setLoadError] = useState(null);
   // IDs of orders that just arrived via Realtime, used for the flash animation
   const [newOrderIds, setNewOrderIds] = useState(new Set());
@@ -57,12 +61,14 @@ export default function AdminDashboard() {
 
   const loadData = useCallback(async () => {
     try {
-      const [orderData, statsData] = await Promise.all([
+      const [orderData, statsData, revenueData] = await Promise.all([
         fetchAdminOrders(),
         fetchTodayStats(),
+        fetchRevenue(10),
       ]);
       setOrders(orderData);
       setStats(statsData);
+      setRevenue(revenueData);
       setLoadError(null);
     } catch (err) {
       setLoadError(err.message || "Failed to load orders.");
@@ -214,6 +220,9 @@ export default function AdminDashboard() {
         </div>
 
         <div className="admin-topbar-right">
+          <Link to="/admin/menu" className="admin-btn admin-btn-ghost admin-btn-sm">
+            Manage menu
+          </Link>
           <button className="admin-btn admin-btn-ghost admin-btn-sm" onClick={loadData}>
             Refresh
           </button>
@@ -244,6 +253,21 @@ export default function AdminDashboard() {
           </div>
         </div>
       )}
+
+      {/* ── 10-day revenue chart ────────────────────── */}
+      <div className="rev-section">
+        <button
+          className="rev-toggle"
+          onClick={() => setChartOpen((o) => !o)}
+          type="button"
+        >
+          <span>10-day revenue</span>
+          <span className="rev-toggle-icon">{chartOpen ? "▲" : "▼"}</span>
+        </button>
+        {chartOpen && revenue.length > 0 && (
+          <RevenueChart data={revenue} />
+        )}
+      </div>
 
       {/* ── Kanban board ────────────────────────────── */}
       <main className="admin-kanban">

@@ -5,6 +5,7 @@ import Cart from "./pages/Cart.jsx";
 import Receipt from "./pages/Receipt.jsx";
 import AdminLogin from "./pages/AdminLogin.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
+import AdminMenu from "./pages/AdminMenu.jsx";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
       {/* Admin / kitchen dashboard */}
       <Route path="/admin" element={<AdminLogin />} />
       <Route path="/admin/dashboard" element={<AdminDashboard />} />
+      <Route path="/admin/menu" element={<AdminMenu />} />
 
       <Route path="*" element={<Landing />} />
     </Routes>

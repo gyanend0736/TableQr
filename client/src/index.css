@@ -1154,3 +1154,356 @@ a {
   min-height: 100vh;
   text-align: center;
 }
+
+/* ── Admin Menu Management page ─────────────────────────────────── */
+
+.admin-menu-page {
+  padding: 20px;
+  max-width: 860px;
+}
+
+.admin-topbar-sep {
+  color: var(--atext-muted);
+  font-size: 16px;
+}
+
+.admin-topbar-page {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--atext-soft);
+}
+
+.amenu-form-wrap {
+  background: var(--asurface);
+  border: 1px solid var(--aborder);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 28px;
+}
+
+.amenu-form-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 18px;
+  color: var(--atext);
+}
+
+.amenu-section {
+  margin-bottom: 32px;
+}
+
+.amenu-section-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--atext-soft);
+  margin: 0 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--aborder);
+}
+
+.amenu-table {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.amenu-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--asurface);
+  border: 1px solid var(--aborder);
+  border-radius: 9px;
+  padding: 12px 16px;
+  transition: opacity 0.2s;
+}
+
+.amenu-row--unavail {
+  opacity: 0.5;
+}
+
+.amenu-row-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.amenu-item-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--atext);
+}
+
+.amenu-item-desc {
+  font-size: 12.5px;
+  color: var(--atext-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.amenu-item-price {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--atext);
+  white-space: nowrap;
+}
+
+.avail-toggle {
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.avail-toggle--on {
+  background: var(--anew-bg);
+  color: var(--anew);
+  border-color: var(--anew-border);
+}
+
+.avail-toggle--on:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.avail-toggle--off {
+  background: var(--asurface2);
+  color: var(--atext-muted);
+  border-color: var(--aborder);
+}
+
+.avail-toggle--off:hover {
+  background: var(--anew-bg);
+  color: var(--anew);
+  border-color: var(--anew-border);
+}
+
+.amenu-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.amenu-delete-confirm {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.amenu-btn-danger {
+  background: rgba(239, 68, 68, 0.1) !important;
+  color: #ef4444 !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+.amenu-btn-delete {
+  color: #ef4444 !important;
+}
+
+.amenu-empty {
+  color: var(--atext-muted);
+  font-size: 14px;
+  padding: 24px 0;
+}
+
+/* Menu item form */
+
+.mitem-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mitem-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.mitem-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mitem-field--full {
+  grid-column: 1 / -1;
+}
+
+.mitem-field--sm {
+  grid-column: span 1;
+}
+
+.mitem-field--check {
+  grid-column: 1 / -1;
+  justify-content: center;
+}
+
+.admin-input--error {
+  border-color: #ef4444 !important;
+}
+
+.mitem-error {
+  font-size: 12px;
+  color: #ef4444;
+}
+
+.mitem-check-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--atext-soft);
+  cursor: pointer;
+}
+
+.mitem-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--anew);
+  cursor: pointer;
+}
+
+.mitem-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 4px;
+  border-top: 1px solid var(--aborder);
+}
+
+.mitem-save-btn {
+  width: auto !important;
+  padding: 10px 24px !important;
+}
+
+/* ── 10-day Revenue Chart ────────────────────────────────────────── */
+
+.rev-section {
+  border-bottom: 1px solid var(--aborder);
+  background: var(--asurface);
+}
+
+.rev-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  color: var(--atext-soft);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.rev-toggle:hover { color: var(--atext); }
+
+.rev-toggle-icon {
+  font-size: 10px;
+  color: var(--atext-muted);
+}
+
+.rev-chart {
+  padding: 0 20px 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.rev-chart::-webkit-scrollbar { display: none; }
+
+.rev-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 130px;
+  min-width: max-content;
+  padding-top: 24px;   /* room for the amount label above bars */
+}
+
+.rev-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 48px;
+  flex-shrink: 0;
+}
+
+.rev-bar-area {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 90px;
+}
+
+.rev-bar-amount {
+  position: absolute;
+  top: -20px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--atext-soft);
+  white-space: nowrap;
+}
+
+.rev-bar {
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  background: rgba(226, 75, 42, 0.35);
+  transition: background 0.15s;
+}
+
+.rev-bar--today {
+  background: var(--aaccent);
+}
+
+.rev-bar--zero {
+  background: var(--aborder);
+  border-radius: 2px;
+}
+
+.rev-col:hover .rev-bar:not(.rev-bar--zero) {
+  background: rgba(226, 75, 42, 0.6);
+}
+
+.rev-col:hover .rev-bar--today {
+  background: #ff6b4a;
+}
+
+.rev-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--atext-muted);
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.rev-label--today {
+  color: var(--aaccent);
+}
+
+.rev-orders {
+  font-size: 9px;
+  color: var(--atext-muted);
+}
